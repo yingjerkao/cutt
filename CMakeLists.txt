@@ -14,12 +14,15 @@ option(FINE_TUNE "enable compile CPU optimized with native hardware" OFF)
 set(CUTT_SRCS src/CudaMemcpy.cu 
               src/cuttGpuModelKernel.cu 
               src/cuttkernel.cu 
+              src/CudaUtils.cu
               src/cuttGpuModel.cpp 
               src/cuttplan.cpp 
               src/cuttTimer.cpp
+              src/cutt.cpp
               src/CudaMemcpy.h
               src/cuttGpuModelKernel.h
               src/cuttkernel.h
+              src/CudaUtils.h
               src/cuttGpuModel.h
               src/cuttplan.h
               src/cuttTimer.h
