@@ -47,7 +47,7 @@ set_target_properties(cutt PROPERTIES
       CUDA_SEPARABLE_COMPILATION ON
                                     )
 set_target_properties(cutt PROPERTIES CUDA_RESOLVE_DEVICE_SYMBOLS ON)
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcudafe=--display_error_number -Xptxas -dlcm=ca -O3 -D_FORCE_INLINE")
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcudafe=--display_error_number -Xptxas -dlcm=ca -O3 -D_FORCE_INLINE -Xcompiler -fPIC")
 
 set(CXXFLAGS "${CXXFLAGS} -fPIC -O3")
 if(ENABLE_NVTOOLS)
@@ -65,7 +65,8 @@ if(FINE_TUNE)
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXXFLAGS}")
-target_compile_options(cutt PUBLIC -lpthread)
+set(CUTT_TMP_FLAGS ${CUTT_TMP_FLAGS} -lpthread)
+target_compile_options(cutt PUBLIC ${CUTT_TMP_FLAGS})
 
 set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS}  "-arch=sm_50 \
       -gencode=arch=compute_50,code=sm_50 \
